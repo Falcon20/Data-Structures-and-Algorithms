@@ -8,6 +8,7 @@ struct Node
 
 /*you are required to
 complete this function */
+//Problem link - https://practice.geeksforgeeks.org/problems/root-to-leaf-path-sum/1
 bool hasPathSum(Node *root, int sum) {
     if(root == NULL)
     return sum == 0;
