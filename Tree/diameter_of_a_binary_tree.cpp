@@ -1,16 +1,15 @@
-/*
+
 struct Node
 {
     int data;
     struct Node* left;
     struct Node* right;
-    
+
     Node(int x){
         data = x;
         left = right = NULL;
     }
-};
-*/
+}; */
 
 int solve(Node *root, int &res)
 {
@@ -18,21 +17,15 @@ int solve(Node *root, int &res)
     return 0;
     int l = solve(root->left, res);
     int r = solve(root->right, res);
-    if(root->left && root->right)
-    {
-        int temp = max(l,r)+ root->data;
-        res = max(res, l+r+root->data);
-        return temp;
-    }
-    if(root->left)
-    return root->data + l;
-    if(root->right)
-    return root->data + r;
-    return root->data;
+    int temp = max(l,r)+1;
+    res = max(l+r+1, res);
+    return temp;
 }
-int maxPathSum(Node* root)
-{ 
+/* Computes the diameter of binary tree with given root.  */
+int diameter(Node* node) {
+    if(node == NULL)
+    return 0;
     int res = INT_MIN;
-    int k = solve(root, res);
+    int k = solve(node, res);
     return res;
 }
