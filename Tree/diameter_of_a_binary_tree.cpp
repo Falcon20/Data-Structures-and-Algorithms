@@ -1,18 +1,38 @@
-/* Computes the diameter of binary tree with given root.  */
+/*
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+*/
+
 int solve(Node *root, int &res)
 {
     if(root == NULL)
     return 0;
     int l = solve(root->left, res);
     int r = solve(root->right, res);
-    int temp = max(l,r)+1;
-    int ans = max(l+r+1, temp);
-    res = max(res, ans);
-    return temp;
-    
+    if(root->left && root->right)
+    {
+        int temp = max(l,r)+ root->data;
+        res = max(res, l+r+root->data);
+        return temp;
+    }
+    if(root->left)
+    return root->data + l;
+    if(root->right)
+    return root->data + r;
+    return root->data;
 }
-int diameter(Node* node) {
-    int res = 0;
-    int k = solve(node, res);
+int maxPathSum(Node* root)
+{ 
+    int res = INT_MIN;
+    int k = solve(root, res);
     return res;
 }
