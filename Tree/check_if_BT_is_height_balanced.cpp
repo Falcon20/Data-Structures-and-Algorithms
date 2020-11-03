@@ -15,21 +15,21 @@ struct Node
 
 // This function should return tree if passed  tree 
 // is balanced, else false. 
-int solve(Node *root, bool &chk, int height)
+int solve(Node *root, bool &res)
 {
     if(root == NULL)
-    return true;
-    int l = solve(root->left, chk, height+1);
-    int r = solve(root->right, chk, height+1);
+    return 0;
+    int l = solve(root->left, res);
+    int r = solve(root->right , res);
     if(abs(l-r)>1)
-    {
-        chk = false;
-    }
+    res = false;
     return max(l,r)+1;
 }
 bool isBalanced(Node *root)
 {
-    bool chk = true;
-    int k = solve(root, chk, 0);
-    return chk;
+    if(root == NULL)
+    return true;
+    bool res = true;
+    int k = solve(root, res);
+    return res;
 }
